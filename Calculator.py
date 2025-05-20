@@ -1,146 +1,94 @@
 import tkinter as tk
+import re
 
-answer = 0
+answer = ""
 start_state = False
 plus = False
 minus = False
 
+operators = []
+
 def clicked1():
-    global answer, plus, minus, start_state
-    if start_state is False:
-        answer = 1
-        start_state = not start_state
-    elif plus is True:
-        answer += 1
-        plus = not plus
-    elif minus is True:
-        answer -= 1
-        minus = not minus
-    enter_lb.configure(text=enter_lb.cget("text")+'1')
+    global answer
+    answer += "1"
 
 def clicked2():
-    global answer, plus, minus, start_state
-    if start_state is False:
-        answer = 2
-        start_state = not start_state
-    elif plus is True:
-        answer += 2
-        plus = not plus
-    elif minus is True:
-        answer -= 2
-        minus = not minus
-    enter_lb.configure(text=enter_lb.cget("text") + '2')
+    global answer
+    global answer
+    answer += "2"
 
 def clicked3():
-    global answer, plus, minus, start_state
-    if start_state is False:
-        answer = 3
-        start_state = not start_state
-    elif plus is True:
-        answer += 3
-        plus = not plus
-    elif minus is True:
-        answer -= 3
-        minus = not minus
-    enter_lb.configure(text=enter_lb.cget("text") + '3')
+    global answer
+    answer += "3"
 
 def clicked4():
-    global answer, plus, minus, start_state
-    if start_state is False:
-        answer = 4
-        start_state = not start_state
-    elif plus is True:
-        answer += 4
-        plus = not plus
-    elif minus is True:
-        answer -= 4
-        minus = not minus
-    enter_lb.configure(text=enter_lb.cget("text") + '4')
+    global answer
+    answer += "4"
 
 def clicked5():
-    global answer, plus, minus, start_state
-    if start_state is False:
-        answer = 5
-        start_state = not start_state
-    elif plus is True:
-        answer += 5
-        plus = not plus
-    elif minus is True:
-        answer -= 5
-        minus = not minus
-    enter_lb.configure(text=enter_lb.cget("text") + '5')
+    global answer
+    answer += "5"
 
 def clicked6():
-    global answer, plus, minus, start_state
-    if start_state is False:
-        answer = 6
-        start_state = not start_state
-    elif plus is True:
-        answer += 6
-        plus = not plus
-    elif minus is True:
-        answer -= 6
-        minus = not minus
-    enter_lb.configure(text=enter_lb.cget("text") + '6')
+    global answer
+    answer += "6"
 
 def clicked7():
-    global answer, plus, minus, start_state
-    if start_state is False:
-        answer = 7
-        start_state = not start_state
-    elif plus is True:
-        answer += 7
-        plus = not plus
-    elif minus is True:
-        answer -= 7
-        minus = not minus
-    enter_lb.configure(text=enter_lb.cget("text") + '7')
+    global answer
+    answer += "7"
 
 def clicked8():
-    global answer, plus, minus, start_state
-    if start_state is False:
-        answer = 8
-        start_state = not start_state
-    elif plus is True:
-        answer += 8
-        plus = not plus
-    elif minus is True:
-        answer -= 8
-        minus = not minus
-    enter_lb.configure(text=enter_lb.cget("text") + '8')
+    global answer
+    answer += "8"
 
 def clicked9():
-    global answer, plus, minus, start_state
-    if start_state is False:
-        answer = 9
-        start_state = not start_state
-    elif plus is True:
-        answer += 9
-        plus = not plus
-    elif minus is True:
-        answer -= 9
-        minus = not minus
-    enter_lb.configure(text=enter_lb.cget("text") + '9')
+    global answer
+    answer += "9"
 
 def cl_plus():
-    global plus
-    plus = True
-    enter_lb.configure(text=enter_lb.cget("text") + '+')
+    global answer, operators
+    operators.append('+')
+    answer += "+"
+    lb.configure(text=str(answer))
+
 
 def cl_minus():
-    global minus
-    minus = True
-    enter_lb.configure(text=enter_lb.cget("text") + '-')
+    global answer, operators
+    operators.append('-')
+    answer += "-"
+    lb.configure(text=str(answer))
 
 def cl_answer():
-    lb.configure(text=answer)
+    global answer
+    temp = re.split(r'[+-]+', answer)
+    print(temp)
+    number_list = [float(i) for i in temp]
+    print(number_list)
+    if number_list is not None:
+        otvet = float(number_list[0])
+        if operators is not None:
+            for i in range(0, len(operators)):
+                if operators[i] == "+":
+                   otvet += float(number_list[i + 1])
+                   print(otvet)
+                elif operators[i] == '-':
+                    otvet -= float(number_list[i + 1])
+    else:
+        otvet = 0
+
+    enter_lb.configure(text=str(otvet))
+
+
+
+
 
 def cl_delete():
-    global answer, start_state
-    answer = 0
-    lb.configure(text=answer)
+    global answer
+    answer = ""
     enter_lb.configure(text="")
-    start_state = False
+    lb.configure(text="")
+
+
 
 window = tk.Tk()
 window.title("Калькулятор")
@@ -157,10 +105,9 @@ for i in range(5):
     frame.rowconfigure(i, weight=1)
 
 # Метки
-enter_lb = tk.Label(frame, text="", anchor="e")
+enter_lb = tk.Label(frame, text="0", anchor="e")
 enter_lb.grid(row=0, column=0, columnspan=5, sticky="nsew", padx=5, pady=5)
-
-lb = tk.Label(frame, text="0", anchor="e")
+lb = tk.Label(frame, text="", anchor="e")
 lb.grid(row=1, column=0, columnspan=5, sticky="nsew", padx=5, pady=5)
 
 # Кнопки с растягиванием (sticky="nsew")
