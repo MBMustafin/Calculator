@@ -3,48 +3,51 @@ from locale import windows_locale
 
 
 class Handler:
+    def clicked1(self):
+        self.answer += "1"
 
+    def clicked2(self):
+        global answer
+        global answer
+        answer += "2"
 
-    def __init__(self, window, frame, calc):
-        self.window = window
-        self.frame = frame
+    def clicked3(self):
+        global answer
+        answer += "3"
 
-        self.calc = calc
+    def clicked4(self):
+        global answer
+        answer += "4"
 
-        self.enter_lb = tk.Label(frame, text="0", anchor="e")
-        self.enter_lb.grid(row=0, column=0, columnspan=5, sticky="nsew", padx=5, pady=5)
-        self.lb = tk.Label(frame, text="", anchor="e")
-        self.lb.grid(row=1, column=0, columnspan=5, sticky="nsew", padx=5, pady=5)
+    def clicked5(self):
+        global answer
+        answer += "5"
 
-        # Кнопки с растягиванием (sticky="nsew")
-        self.button1 = tk.Button(frame, text="1")
-        self.button1.grid(row=2, column=0, sticky="nsew", padx=2, pady=2)
-        self.button4 = tk.Button(frame, text="4")
-        self.button4.grid(row=3, column=0, sticky="nsew", padx=2, pady=2)
-        self.button7 = tk.Button(frame, text="7")
-        self.button7.grid(row=4, column=0, sticky="nsew", padx=2, pady=2)
+    def clicked6(self):
+        global answer
+        answer += "6"
 
-        self.button2 = tk.Button(frame, text="2")
-        self.button2.grid(row=2, column=1, sticky="nsew", padx=2, pady=2)
-        self.button5 = tk.Button(frame, text="5")
-        self.button5.grid(row=3, column=1, sticky="nsew", padx=2, pady=2)
-        self.button8 = tk.Button(frame, text="8")
-        self.button8.grid(row=4, column=1, sticky="nsew", padx=2, pady=2)
+    def clicked7(self):
+        global answer
+        answer += "7"
 
-        self.button3 = tk.Button(frame, text="3")
-        self.button3.grid(row=2, column=2, sticky="nsew", padx=2, pady=2)
-        self.button6 = tk.Button(frame, text="6")
-        self.button6.grid(row=3, column=2, sticky="nsew", padx=2, pady=2)
-        self.button9 = tk.Button(frame, text="9")
-        self.button9.grid(row=4, column=2, sticky="nsew", padx=2, pady=2)
+    def clicked8(self):
+        global answer
+        answer += "8"
 
-        self.button_p = tk.Button(frame, text="+")
-        self.button_p.grid(row=2, column=3, sticky="nsew", padx=2, pady=2)
-        self.button_m = tk.Button(frame, text="-")
-        self.button_m.grid(row=3, column=3, sticky="nsew", padx=2, pady=2)
-        self.button_e = tk.Button(frame, text="=")
-        self.button_e.grid(row=4, column=3, sticky="nsew", padx=2, pady=2)
+    def clicked9(self):
+        global answer
+        answer += "9"
 
-        self.button_d = tk.Button(frame, text="C")
-        self.button_d.grid(row=4, column=4, sticky="nsew", padx=2, pady=2)
+    def cl_plus(self):
+        global answer, operators
+        operators.append('+')
+        answer += "+"
+        lb.configure(text=str(answer))
+
+    def cl_minus(self):
+        global answer, operators
+        operators.append('-')
+        answer += "-"
+        lb.configure(text=str(answer))
 
